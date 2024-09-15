@@ -31,7 +31,7 @@ public class SecurityConfig {
                     .sessionManagement(https -> https.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests(authorize -> authorize.
                             requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
-                            .anyRequest().permitAll())
+                            .anyRequest().authenticated())
                     .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                     .addFilterBefore(gatewayFilter, UsernamePasswordAuthenticationFilter.class)
                     .build();
